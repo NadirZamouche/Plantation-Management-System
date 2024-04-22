@@ -1,4 +1,4 @@
-# FarmTechSolutions 🌱📱💻
+# Plantation Management System 🌱📱💻
 
 Welcome to FarmTechSolutions, a comprehensive suite of applications and tools aimed at revolutionizing plantation management and farm worker efficiency!
 
