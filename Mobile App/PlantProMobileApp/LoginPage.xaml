@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PlantProMobileApp.LoginPage"
+             Title="Login"
+             BackgroundColor="#EEEEEE"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="CenterAndExpand" Margin="50, 0">
+            <Label Text="Bienvenue!"
+                   FontSize="Large"
+                   FontAttributes="Bold"
+                   TextColor="Black"
+                   HorizontalOptions="Center"/>
+            <Image Source="li.png"
+                   HeightRequest="200"
+                   BackgroundColor="#EEEEEE"/>
+            <Frame BackgroundColor="#FFFFFF"
+                   Margin="0, 0, 0, 0"
+                   Padding="20, 5"
+                   CornerRadius="20">
+                <Entry x:Name="login"
+                       Placeholder="Adresse mail"
+                       PlaceholderColor="Gray"
+                       TextColor="Black"/>
+            </Frame>
+            <Frame BackgroundColor="#FFFFFF"
+                   Margin="0, 20, 0, 0"
+                   Padding="20, 5"
+                   CornerRadius="20">
+                <Entry x:Name="password"
+                       Placeholder="Mot de passe"
+                       PlaceholderColor="Gray"
+                       TextColor="Black"/>
+            </Frame>
+            <Button Text="Connexion"
+                    TextColor="White"
+                    FontSize="25"
+                    TextTransform="None"
+                    BackgroundColor="#50C2C9"
+                    Margin="0,100,0,0"
+                    Padding="20, 10"
+                    Clicked="LoginClick"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

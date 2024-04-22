@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PlantProMobileApp.MainPage"
+             BackgroundColor="#EEEEEE"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <RefreshView x:Name="myRefreshView" 
+                     RefreshColor="#50C2C9"
+                     Refreshing="myRefreshView_Refreshing">
+            <ScrollView>
+                <StackLayout>
+                    <AbsoluteLayout>
+                        <BoxView Color="#50C2C9"
+                                 AbsoluteLayout.LayoutFlags="WidthProportional"
+                                 AbsoluteLayout.LayoutBounds="0,0,1,150"/>
+                        <Label Text="PlantPro"
+                               TextColor="White"
+                               FontSize="29"
+                               FontAttributes="Bold"
+                               FontFamily="Poppins"
+                               AbsoluteLayout.LayoutBounds="0,0,AutoSize,AutoSize"
+                               AbsoluteLayout.LayoutFlags="PositionProportional"
+                               Margin="20"/>
+                        <ImageButton Source="A500.png"
+                                     BackgroundColor="#50C2C9"
+                                     AbsoluteLayout.LayoutBounds="1,0,90,85"
+                                     AbsoluteLayout.LayoutFlags="PositionProportional"
+                                     Margin="24"
+                                     Clicked="LogoutClick"/>
+                        <Label x:Name="lbl2"
+                               TextColor="#100C3E"
+                               FontSize="25"
+                               FontAttributes="Bold"
+                               FontFamily="Poppins"
+                               AbsoluteLayout.LayoutBounds="0.5,0.8,AutoSize,AutoSize"
+                               AbsoluteLayout.LayoutFlags="PositionProportional"/>
+                    </AbsoluteLayout>
+                    <StackLayout>
+                        <Label x:Name="ConnectivityLabel" 
+                               TextColor="Red" 
+                               IsVisible="False" 
+                               Text="Impossible de se connecter au serveur"/>
+                        <Button x:Name ="ScanButton"
+                                Text="Scanner les codes à barres"
+                                FontSize="20"
+                                TextTransform="None"
+                                TextColor="#FF0202"
+                                BackgroundColor="#FFFFFF"
+                                CornerRadius="15"
+                                BorderColor="LightGray"
+                                Margin="40, 10"
+                                BorderWidth="2"
+                                IsVisible="True"/>
+                        <Label x:Name="TaskView"
+                               TextColor="#212121"
+                               FontSize="25"
+                               Text="Liste des tâches"
+                               Margin="20,40,60,0"
+                               IsVisible="True"/>
+                        <ListView x:Name="ItemlistView"
+                                  HasUnevenRows="True"
+                                  IsVisible="True">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <Frame CornerRadius="15"
+                                               BackgroundColor="#FFFFFF"
+                                               Margin="10"
+                                               BorderColor="#50C2C9">
+                                            <Grid>
+                                                <StackLayout>
+                                                    <Label Text="{Binding PlanDate, StringFormat='Date: {0:dd/MM/yyyy}'}"
+                                                           FontSize="Medium"
+                                                           TextColor="Black"/>
+                                                    <Label Text="{Binding Order, StringFormat='Commenaire: {0}'}"
+                                                           FontSize="Medium"
+                                                           TextColor="Black"/>
+                                                    <Label Text="{Binding Alley.Name, StringFormat='Allée: {0}'}"
+                                                           FontSize="Medium"
+                                                           TextColor="Black"/>
+                                                </StackLayout>
+                                            </Grid>
+                                        </Frame>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+        </RefreshView>
+    </ContentPage.Content>
+</ContentPage>

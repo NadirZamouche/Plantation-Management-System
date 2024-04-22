@@ -1,0 +1,17 @@
+C:\Users\USER\desktop\PlantProMobileApp\PlantProMobileApp\bin\Release\netstandard2.0\PlantProMobileApp.deps.json
+C:\Users\USER\desktop\PlantProMobileApp\PlantProMobileApp\bin\Release\netstandard2.0\PlantProMobileApp.dll
+C:\Users\USER\desktop\PlantProMobileApp\PlantProMobileApp\bin\Release\netstandard2.0\PlantProMobileApp.pdb
+C:\Users\USER\desktop\PlantProMobileApp\PlantProMobileApp\obj\Release\netstandard2.0\PlantProMobileApp.csproj.AssemblyReference.cache
+C:\Users\USER\desktop\PlantProMobileApp\PlantProMobileApp\obj\Release\netstandard2.0\PlantProMobileApp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\USER\desktop\PlantProMobileApp\PlantProMobileApp\obj\Release\netstandard2.0\App.xaml.g.cs
+C:\Users\USER\desktop\PlantProMobileApp\PlantProMobileApp\obj\Release\netstandard2.0\LoginPage.xaml.g.cs
+C:\Users\USER\desktop\PlantProMobileApp\PlantProMobileApp\obj\Release\netstandard2.0\MainPage.xaml.g.cs
+C:\Users\USER\desktop\PlantProMobileApp\PlantProMobileApp\obj\Release\netstandard2.0\UpdatePlant.xaml.g.cs
+C:\Users\USER\desktop\PlantProMobileApp\PlantProMobileApp\obj\Release\netstandard2.0\PlantProMobileApp.AssemblyInfoInputs.cache
+C:\Users\USER\desktop\PlantProMobileApp\PlantProMobileApp\obj\Release\netstandard2.0\PlantProMobileApp.AssemblyInfo.cs
+C:\Users\USER\desktop\PlantProMobileApp\PlantProMobileApp\obj\Release\netstandard2.0\PlantProMobileApp.csproj.CoreCompileInputs.cache
+C:\Users\USER\desktop\PlantProMobileApp\PlantProMobileApp\obj\Release\netstandard2.0\XamlC.stamp
+C:\Users\USER\desktop\PlantProMobileApp\PlantProMobileApp\obj\Release\netstandard2.0\PlantProMobileApp.dll
+C:\Users\USER\desktop\PlantProMobileApp\PlantProMobileApp\obj\Release\netstandard2.0\refint\PlantProMobileApp.dll
+C:\Users\USER\desktop\PlantProMobileApp\PlantProMobileApp\obj\Release\netstandard2.0\PlantProMobileApp.pdb
+C:\Users\USER\desktop\PlantProMobileApp\PlantProMobileApp\obj\Release\netstandard2.0\ref\PlantProMobileApp.dll
