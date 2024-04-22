@@ -1,0 +1,75 @@
+﻿@model IEnumerable<Identity.Models.Planning>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>@*Plannings*@Plannings</h1>
+<hr />
+<div style="width:99%">
+    <div class="row mb-3">
+        <div class="col-md-3">
+            <a asp-controller="Planning" asp-action="Create" class="btn btn-primary mr-3"><i class="fa-solid fa-plus"></i> @*Add new*@Ajouter nouveau</a>
+        </div>
+        <div class="col-md-9">
+            <form asp-controller="Planning" asp-action="Search" method="get" class="form-inline my-2 my-lg-0">
+                <div class="row mb-3">
+                    @*<div class="col-md-6">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="term">
+                    </div>*@
+                    <div class="col-md-6">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Chercher" aria-label="Search" name="term">
+                    </div>
+                    <div class="col-md-3">
+                        <button class="btn btn-outline-primary my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<table class="table table-striped mt-4">
+    <thead>
+        <tr class="bg-primary text-white">
+            <th>
+                @*@Html.DisplayNameFor(model => model.PlanDate)*@Date
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.User.FullName)*@Agent
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.Alley.Name)*@Allée
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.Order)*@Détails
+            </th>
+            <th>
+                Actions
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.PlanDate.ToString("dd-MM-yyyy")
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Alley.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Order)
+                </td>
+                <td>
+                    @*<a asp-controller="Planning" asp-action="Details" asp-route-id="@item.Id" class="btn btn-secondary"><i class="fa-solid fa-circle-info"></i> Details Planning Détails du planning</a>*@
+                    <a asp-controller="Planning" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-primary"><i class="fa-solid fa-pen-to-square"></i> @*Edit Planning*@Modifier le planning</a>
+                    <a asp-controller="Planning" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger"><i class="fa-solid fa-trash"></i> @*Delete a Planning*@Supprimer le planning</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

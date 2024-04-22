@@ -1,0 +1,98 @@
+﻿@model IEnumerable<Identity.Models.Plant>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>@*Plants*@Plantes</h1>
+    <hr />
+    <div style="width:99%">
+        <div class="row mb-3">
+            <div class="col-md-3">
+            <a asp-controller="Plant" asp-action="Create" class="btn btn-primary mr-3"><i class="fa-solid fa-plus"></i> @*Add new*@Ajouter nouveau</a>
+            </div>
+            <div class="col-md-9">
+                <form asp-controller="Plant" asp-action="Search" method="get" class="form-inline my-2 my-lg-0">
+                <div class="row mb-3">
+                    @*<div class="col-md-6">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="term">
+                    </div>*@
+                    <div class="col-md-6">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Chercher" aria-label="Search" name="term">
+                    </div>
+                    <div class="col-md-3">
+                        <button class="btn btn-outline-primary my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+<table class="table table-striped mt-4">
+        <thead>
+        <tr class="bg-primary text-white">
+                <th>
+                    @*@Html.DisplayNameFor(model => model.Name)*@Nom
+                </th>
+                <th>
+                    @*@Html.DisplayNameFor(model => model.Greenhouse.Name)*@Serre
+                </th>
+                <th>
+                    @*@Html.DisplayNameFor(model => model.Alley.Name)*@Allée
+                </th>
+                <th>
+                    @*@Html.DisplayNameFor(model => model.Weight)*@Rendement
+                </th>
+                <th>
+                    @*@Html.DisplayNameFor(model => model.HarvestDate)*@Date de récolte
+                </th>
+                <th>
+                    @*@Html.DisplayNameFor(model => model.State)*@État
+                </th>
+                <th>
+                    @*@Html.DisplayNameFor(model => model.Verification)*@Vérifiée?
+                </th>
+                <th>
+                    @*@Html.DisplayNameFor(model => model.Remarks)*@Remarques
+                </th>
+                <th>
+                    Actions
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Greenhouse.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Alley.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Weight)
+                </td>
+                <td>
+                    @item.HarvestDate.ToString("dd-MM-yyyy")
+                </td>
+                <td>
+                    <span class="@(item.State ? "dot-green" : "dot-red")"></span>
+                </td>
+                <td>
+                    <span class="@(item.Verification ? "checkmark" : "warning")">@(item.Verification ? "✓" : "⚠")</span>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Remarks)
+                </td>
+                <td>
+                    @*<a asp-controller="Plant" asp-action="Details" asp-route-id="@item.Id" class="btn btn-secondary"><i class="fa-solid fa-circle-info"></i> Details Plant Détails de plante</a>*@
+                    <a asp-controller="Plant" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-primary"><i class="fa-solid fa-pen-to-square"></i> @*Edit Plant*@Modifier la plante</a>
+                    <a asp-controller="Plant" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger"><i class="fa-solid fa-trash"></i> @*Delete Plant*@Supprimer la plante</a>
+                </td>
+            </tr>
+}
+        </tbody>
+    </table>

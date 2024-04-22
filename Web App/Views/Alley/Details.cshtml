@@ -1,0 +1,22 @@
+﻿@model Identity.Models.Alley
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>@*Details of an alley*@Détails d'une allée</h2>
+<hr />
+<div>
+    <dl class="row" style=" width: 99%">
+        <dt class="col-sm-2 mb-3">
+            @*@Html.DisplayNameFor(model => model.Name)*@Nom
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-controller="Alley" asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i> @*Edit*@Modifier l'allée</a>
+    <a asp-controller="Alley" asp-action="Index" class="btn btn-secondary">@*Cancel*@Annuler</a>
+</div>

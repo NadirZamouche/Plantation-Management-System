@@ -1,0 +1,44 @@
+﻿@model Identity.Models.Planning
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>@*Delete a planning*@Supprimer un planning</h2>
+<h3>@*Are you sure you want to delete this?*@Êtes-vous sûr de vouloir supprimer ceci?</h3>
+<hr />
+<div>
+    <dl class="row mb-3" style=" width: 99%">
+        <dt class="col-sm-2 mb-3">
+            @*@Html.DisplayNameFor(model => model.PlanDate)*@Date
+        </dt>
+        <dd class="col-sm-10">
+            @Model.PlanDate.ToString("dd-MM-yyyy")
+        </dd>
+        <dt class="col-sm-2 mb-3">
+            @*@Html.DisplayNameFor(model => model.User.FullName)*@Agent
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.User.FullName)
+        </dd>
+        <dt class="col-sm-2 mb-3">
+            @*@Html.DisplayNameFor(model => model.Alley.Name)*@Allée
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Alley.Name)
+        </dd>
+        <dt class="col-sm-2 mb-3">
+            @*@Html.DisplayNameFor(model => model.Order)*@Détails
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Order)
+        </dd>
+    </dl>
+
+    <form asp-action="ConfirmDelete" asp-route-id="@Model.Id">
+        @*<input type="submit" value="Delete" class="btn btn-danger" />
+        <a asp-action="Index" class="btn btn-secondary">Cancel</a>*@
+        <input type="submit" value="Supprimer" class="btn btn-danger" />
+        <a asp-action="Index" class="btn btn-secondary">Annuler</a>
+    </form>
+</div>

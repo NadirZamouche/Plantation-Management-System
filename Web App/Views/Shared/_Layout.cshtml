@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Desktop</title>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/font-awesome/css/all.css" rel="stylesheet" />
+    <link href="~/font-awesome/css/all.min.css" rel="stylesheet" />
+    <link href="~/css/bool.css" rel="stylesheet" />
+    <link href="~/css/site3.css" rel="stylesheet" />
+    <link href="~/css/custom.css" rel="stylesheet" />
+    <link href="~/lib/toastr.js/toastr.min.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div class="sidebar">
+        <!-- Side bar content -->
+        <a asp-area="Identity" asp-page="/Account/Manage/Index">
+            <i class="fa fa-user"></i>@*Profile*@Mon profil
+        </a>
+        <a asp-controller="Chart" asp-action="Index">
+            <i class="fa-solid fa-chart-simple"></i>@*Dashboard*@Tableau de bord
+        </a>
+        @if (User.IsInRole("Manager"))
+        {
+            <a asp-controller="Alley" asp-action="Index">
+                <i class="fa fa-tree"></i>@*Alleys*@Allées
+            </a>
+            <a asp-controller="Greenhouse" asp-action="Index">
+                <i class="fa fa-house"></i>@*Greenhouses*@Serres
+            </a>
+            <a asp-controller="Plant" asp-action="Index">
+                <i class="fa fa-leaf"></i>@*Plants*@Plantes
+            </a>
+            <a asp-controller="Planning" asp-action="Index">
+                <i class="fa fa-calendar"></i>@*Inspections Schedule*@Plannings d'inspection
+            </a>
+            <a asp-controller="Users" asp-action="Index">
+                <i class="fa fa-users"></i>@*Users*@Comptes utilisateurs
+            </a>
+        }
+        <div class="sign-out">
+            <a asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                <i class="fa fa-sign-out"></i>@*Log out*@Se déconnecter
+            </a>
+        </div>
+}
+    </div>
+    <div class="main">
+        <main role="main" class="pb-3">
+            <partial name="_Notification" />
+            @RenderBody()
+        </main>
+    </div>
+    @await RenderSectionAsync("Scripts", required: false)
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="vendor/jquery/jquery.min.js"></script>
+</body>
+</html>

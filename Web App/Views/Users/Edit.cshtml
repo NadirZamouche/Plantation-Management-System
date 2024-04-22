@@ -1,0 +1,33 @@
+﻿@model Identity.ViewModels.ProfileFormViewModel
+@{
+    ViewData["Title"] = "Edit User";
+}
+
+<h2>@*Edit an account*@Modifier un compte</h2>
+<hr />
+<div class="row" style=" width: 99%">
+    <div class="col-md-5">
+        <form asp-controller="Users" asp-action="Edit" method="post">
+            @*<div asp-validation-summary="ModelOnly" class="text-danger"></div>*@
+            <input type="hidden" asp-for="Id" />
+            <div class="form-floating mb-4">
+                <input asp-for="FullName" class="form-control" minLength="3" maxlength="50" autocomplete="username" aria-required="true" />
+                <label asp-for="FullName">Nom prénom</label>
+                <span asp-validation-for="FullName" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-4">
+                <input asp-for="Email" class="form-control" autocomplete="username" aria-required="true" />
+                <label asp-for="Email">Addresse mail</label>
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            @*<input type="submit" value="Save" class="btn btn-primary" />
+            <a asp-controller="Users" asp-action="Index" class="btn btn-secondary">Cancel</a>*@
+            <input type="submit" value="Sauvegarder" class="btn btn-primary" />
+            <a asp-controller="Users" asp-action="Index" class="btn btn-secondary">Annuler</a>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,54 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<div class="row">
+
+    <div class="col-md-6">
+        <div class="image">
+            <img src="~/images/login.jpg" />
+        </div>
+    </div>
+    <div class="col-md-6 content">
+        <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+            <h2 class=" mb-5" style="color: lightslategray">@*Create a new account!*@Créer un nouveau compte!</h2>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.FullName" class="form-control" minLength="5" maxlength="50" autocomplete="username" aria-required="true" />
+                <label asp-for="Input.FullName">Nom et prénom</label>
+                <span asp-validation-for="Input.FullName" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" />
+                <label asp-for="Input.Email">Addresse mail</label>
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" />
+                <label asp-for="Input.Password">Entrer un mot de passe</label>
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-4">
+                <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" />
+                <label asp-for="Input.ConfirmPassword">Confirmer le mot de passe</label>
+                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+            </div>
+            <div class="mb-5">
+            <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">@*Register*@Enregistrer</button>
+            </div>
+            <hr class="mb-2" />
+            <div>
+                <p>
+                    <a asp-page="./Login" asp-route-returnUrl="@Model.ReturnUrl">S'identifier</a>
+                </p>
+            </div>
+            
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

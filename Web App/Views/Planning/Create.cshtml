@@ -1,0 +1,36 @@
+﻿@model Identity.ViewModels.PlanningUserAlleyViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>@*Create a new planning*@Créer un nouveau planning</h2>
+<hr />
+<div class="row" style=" width: 99%">
+    <div class="col-md-5">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-floating mb-4">
+                <select asp-for="UserID" class="form-control"
+                        asp-items="@(new SelectList(Model.Users, "Id", "FullName"))"></select>
+                <label asp-for="UserID">Agent</label>
+                <span asp-validation-for="UserID" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-4">
+                <select asp-for="AlleyID" class="form-control"
+                        asp-items="@(new SelectList(Model.Alleys, "Id", "Name"))"></select>
+                <label asp-for="AlleyID">Allée</label>
+                <span asp-validation-for="AlleyID" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-4">
+                <input asp-for="Order" class="form-control" />
+                <label asp-for="Order">Détails</label>
+                <span asp-validation-for="Order" class="text-danger"></span>
+            </div>
+            @*<input type="submit" value="Save" class="btn btn-primary" />
+            <a asp-controller="Planning" asp-action="Index" class="btn btn-secondary">Cancel</a>*@
+            <input type="submit" value="Sauvegarder" class="btn btn-primary" />
+            <a asp-controller="Planning" asp-action="Index" class="btn btn-secondary">Annuler</a>
+        </form>
+    </div>
+</div>

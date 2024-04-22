@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Identity.ViewModels.UserViewModel>
+@{
+    ViewData["Title"] = "Users";
+}
+
+<h1 >@*Users*@Utilisateurs</h1>
+<hr />
+<div style="width:99%">
+    <div class="row mb-3">
+        <div class="col-md-3">
+            <a class="btn btn-primary" asp-action="Add"><i class="fa-solid fa-plus"></i> @*Add new*@Ajouter nouveau</a>
+        </div>
+        <div class="col-md-9">
+            <form asp-action="Search" method="get" class="form-inline my-2 my-lg-0">
+                <div class="row mb-3">
+                    @*<div class="col-md-6">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="term">
+                    </div>*@
+                    <div class="col-md-6">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Chercher" aria-label="Search" name="term">
+                    </div>
+                    <div class="col-md-3">
+                        <button class="btn btn-outline-primary my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<table class="table table-striped mt-4">
+    <thead>
+        <tr class="bg-primary text-white">
+            <th>@*FullName*@Nom prénom</th>
+            <th>@*Email*@Addresse mail</th>
+            <th>@*Roles*@Rôles</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.FullName</td>
+                <td>@user.Email</td>
+                <td>@string.Join(" , ", user.Roles.ToList())</td>
+                <td>
+                    <a class="btn btn-primary" asp-controller="Users" asp-action="ManageRoles" asp-route-userId="@user.Id"><i class="fa-solid fa-circle-info"></i> @*Manage Roles*@Gérer les rôles</a>
+                    <a class="btn btn-outline-primary" asp-controller="Users" asp-action="Edit" asp-route-userId="@user.Id"><i class="fa-solid fa-pen-to-square"></i> @*Edit Profile*@Modifier le compte</a>
+                    <a class="btn btn-danger" asp-controller="Users" asp-action="Delete" asp-route-userId="@user.Id"><i class="fa-solid fa-trash"></i> @*Delete Profile*@Supprimer le compte</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

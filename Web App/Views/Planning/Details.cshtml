@@ -1,0 +1,42 @@
+﻿@model Identity.Models.Planning
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>@*Details of a planning*@Détails d'un planning</h2>
+<hr />
+<div style=" width: 99%">
+    <dl class="row mb-3">
+        <dt class="col-sm-2 mb-4">
+            @*@Html.DisplayNameFor(model => model.PlanDate)*@Date
+        </dt>
+        <dd class="col-sm-10">
+            @Model.PlanDate.ToString("dd-MM-yyyy")
+        </dd>
+        <dt class="col-sm-2 mb-4">
+            @*@Html.DisplayNameFor(model => model.User.FullName)*@Agent
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.User.FullName)
+        </dd>
+        <dt class="col-sm-2 mb-4">
+            @*@Html.DisplayNameFor(model => model.Alley.Name)*@Allée
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Alley.Name)
+        </dd>
+        <dt class="col-sm-2 mb-4">
+            @*@Html.DisplayNameFor(model => model.Order)*@Détails
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Order)
+        </dd>
+    </dl>
+</div>
+<div>
+    @*<a asp-controller="Planning" asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i>Edit</a>
+    <a asp-controller="Planning" asp-action="Index" class="btn btn-secondary">Cancel</a>*@
+    <a asp-controller="Planning" asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i>@*Edit*@Modifier le planning</a>
+    <a asp-controller="Planning" asp-action="Index" class="btn btn-secondary">@*Cancel*@Annuler</a>
+</div>

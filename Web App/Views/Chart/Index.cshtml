@@ -1,0 +1,203 @@
+﻿@model Identity.ViewModels.ChartViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+<div class="container">
+    <div class="row md-3 mb-5">
+        <div class="col-md-3">
+            <div class="card-counter primary">
+                <i class="fa fa-home"></i>
+                <span class="count-numbers">@Html.DisplayFor(model => model.TotalGreenhouses)</span>
+                <span class="count-name">@*@Html.DisplayNameFor(model => model.TotalGreenhouses)*@Serres Total</span>
+                <hr />
+                <a asp-controller="Greenhouse" asp-action="Index" class="card-link">@*View Details*@voir les détails</a>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card-counter danger">
+                <i class="fa fa-leaf"></i>
+                <span class="count-numbers">@Html.DisplayFor(model => model.TotalPlants)</span>
+                <span class="count-name">@*@Html.DisplayNameFor(model => model.TotalPlants)*@Plantes Total</span>
+                <hr />
+                <a asp-controller="Plant" asp-action="Index" class="card-link">@*View Details*@voir les détails</a>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card-counter success">
+                <i class="fa fa-scale-balanced"></i>
+                <span class="count-numbers">@Html.DisplayFor(model => model.TotalWeight)</span>
+                <span class="count-name">@*@Html.DisplayNameFor(model => model.TotalWeight)*@Rendement Total</span>
+                <hr />
+                <a asp-controller="Plant" asp-action="Index" class="card-link">@*View Details*@voir les détails</a>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card-counter info">
+                <i class="fa-solid fa-circle-check"></i>
+                <span class="count-numbers">@Html.DisplayFor(model => model.PercentageVerified)%</span>
+                <span class="count-name">@*@Html.DisplayNameFor(model => model.PercentageVerified)*@Plantes vérifiées</span>
+                <hr />
+                <a asp-controller="Plant" asp-action="Index" class="card-link">@*View Details*@voir les détails</a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <h3 style="text-align: center; font-weight: bold; color:black; opacity: 0.8;">@*Weight per Plant*@Rendement par plante</h3>
+            <br>
+            <canvas id="lineChart"></canvas>
+        </div>
+        <div class="col-md-6">
+            <h3 style="text-align: center; font-weight: bold; color:black; opacity: 0.8;">@*Plants Health overall*@Santé globale des plantes</h3>
+            <br>
+            <div class="modal-div-canvas js-chart">
+                <div class="chart-canvas">
+                    <canvas id="openedCanvas" height="505" width="900"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script src="~/js/chart.js"></script>
+    <script>
+        // Get the data from the view model
+        var plants = @Html.Raw(Json.Serialize(Model.TotalPlants));
+        var weights = @Html.Raw(Json.Serialize(Model.Weights));
+
+        // Create the chart data
+        var chartData = {
+            labels: Array.from({ length: plants }, (v, i) => i + 1), // X-axis: array of numbers from 1 to TotalPlants
+            datasets: [
+                {
+                    label: "Rendement",
+                    data: weights, // Y-axis: array of weights
+                    fill: false,
+                    borderColor: "rgb(75, 192, 192)",
+                    lineTension: 0.1
+                }
+            ]
+        };
+
+        // Create the chart options
+        var chartOptions = {
+            responsive: true,
+            title: {
+                display: true,
+                text: "Line Chart Example"
+            },
+            scales: {
+                yAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: "Weight (kg)"
+                    }
+                }],
+                xAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: "Plants"
+                    }
+                }]
+            }
+        };
+
+        // Create the line chart
+        var lineChart = new Chart("lineChart", {
+            type: "line",
+            data: chartData,
+            options: chartOptions
+        });
+    </script>
+    <script src="~/js/jquery.min.js"></script>
+    <script src="~/js/chart.bundle.min.js"></script>
+    <script>
+        Chart.defaults.RoundedDoughnut = Chart.helpers.clone(Chart.defaults.doughnut);
+        Chart.controllers.RoundedDoughnut = Chart.controllers.doughnut.extend({
+            draw: function (ease) {
+                var ctx = this.chart.chart.ctx;
+
+                var easingDecimal = ease || 1;
+                Chart.helpers.each(this.getDataset().metaData, function (arc, index) {
+                    arc.transition(easingDecimal).draw();
+
+                    var vm = arc._view;
+                    var radius = (vm.outerRadius + vm.innerRadius) / 2;
+                    var thickness = (vm.outerRadius - vm.innerRadius) / 2;
+                    var angle = Math.PI - vm.endAngle - Math.PI / 2;
+
+                    ctx.save();
+                    ctx.fillStyle = vm.backgroundColor;
+                    ctx.translate(vm.x, vm.y);
+                    ctx.beginPath();
+                    ctx.arc(radius * Math.sin(angle), radius * Math.cos(angle), thickness, 0, 2 * Math.PI);
+                    ctx.arc(radius * Math.sin(Math.PI), radius * Math.cos(Math.PI), thickness, 0, 2 * Math.PI);
+                    ctx.closePath();
+                    ctx.fill();
+                    ctx.restore();
+                });
+
+                // Add percentage value to center of chart
+                var total = this.getDataset().data.reduce(function (previousValue, currentValue) {
+                    return previousValue + currentValue;
+                });
+
+                var centerTx = this.chart.chart.width / 2.3;
+                var centerTy = this.chart.chart.height / 2;
+                var fontSize = (Math.min(this.chart.chart.width, this.chart.chart.height) / 10).toFixed(2);
+                ctx.font = fontSize + "px Arial";
+                ctx.textBaseline = "middle";
+                ctx.fillStyle = "Darkgray";
+                ctx.fillText(this.getDataset().data[0] + "%", centerTx, centerTy);
+            },
+        });
+
+        var deliveredData = {
+            labels: [
+                "Value"
+            ],
+            datasets: [
+                {
+                    data: [@Html.DisplayFor(model => model.PercentageState), 100 - @Html.DisplayFor(model => model.PercentageState)],
+                    backgroundColor: [
+                        "#3ec556",
+                        "rgba(0,0,0,0)"
+                    ],
+                    hoverBackgroundColor: [
+                        "#3ec556",
+                        "rgba(0,0,0,0)"
+                    ],
+                    borderWidth: [
+                        0, 0
+                    ]
+                }]
+        };
+
+        var deliveredOpt = {
+            cutoutPercentage: 88,
+            animation: {
+                animationRotate: true,
+                duration: 2000
+            },
+            legend: {
+                display: false
+            },
+            tooltips: {
+                enabled: false
+            }
+        };
+
+        var chart = new Chart($('#openedCanvas'), {
+            type: 'RoundedDoughnut',
+            data: deliveredData,
+            options: deliveredOpt
+        });
+    </script>
+}

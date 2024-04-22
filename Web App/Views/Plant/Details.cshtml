@@ -1,0 +1,64 @@
+﻿@model Identity.Models.Plant
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>@*Details of a plant*@Détails d'une plante</h2>
+<hr />
+<div style=" width: 99%">
+    <dl class="row mb-3">
+        <dt class="col-sm-2 mb-3">
+            @*@Html.DisplayNameFor(model => model.Name)*@Nom
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-2 mb-3">
+            @*@Html.DisplayNameFor(model => model.Greenhouse.Name)*@Serre
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Greenhouse.Name)
+        </dd>
+        <dt class="col-sm-2 mb-3">
+            @*@Html.DisplayNameFor(model => model.Alley.Name)*@Allée
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Alley.Name)
+        </dd>
+        <dt class="col-sm-2 mb-3">
+            @*@Html.DisplayNameFor(model => model.Weight)*@Rendement
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Weight)
+        </dd>
+        <dt class="col-sm-2 mb-3">
+            @*@Html.DisplayNameFor(model => model.HarvestDate)*@Date de récolte
+        </dt>
+        <dd class="col-sm-10">
+            @Model.HarvestDate.ToString("dd-MM-yyyy")
+        </dd>
+        <dt class="col-sm-2 mb-3">
+            @*@Html.DisplayNameFor(model => model.State)*@État
+        </dt>
+        <dd class="col-sm-10">
+            <span class="@(Model.State ? "dot-green" : "dot-red")"></span>
+        </dd>
+        <dt class="col-sm-2 mb-4">
+            @*@Html.DisplayNameFor(model => model.Verification)*@Vérifiée?
+        </dt>
+        <dd class="col-sm-10">
+            <span class="@(Model.Verification ? "checkmark" : "warning")">@(Model.Verification ? "✓" : "⚠")</span>
+        </dd>
+        <dt class="col-sm-2 mb-3">
+            @*@Html.DisplayNameFor(model => model.Remarks)*@Remarques
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Remarks)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-controller="Plant" asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i>@*Edit*@Modifier la plante</a>
+    <a asp-controller="Plant" asp-action="Index" class="btn btn-secondary">@*Cancel*@Annuler</a>
+</div>

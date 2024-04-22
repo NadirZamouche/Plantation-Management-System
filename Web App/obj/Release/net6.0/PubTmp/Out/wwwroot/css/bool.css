@@ -1,0 +1,29 @@
+﻿.dot-green {
+    display: inline-block;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    background-color: green;
+}
+
+.dot-red {
+    display: inline-block;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    background-color: red;
+}
+
+.checkmark {
+    color: white;
+    background-color: green;
+    border-radius: 50%;
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    text-align: center;
+}
+
+.warning {
+    color: orange;
+}

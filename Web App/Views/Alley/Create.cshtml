@@ -1,0 +1,24 @@
+﻿@model Identity.Models.Alley
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>@*Create a new alley*@Créer une nouvelle allée</h2>
+<hr />
+<div class="row" style=" width: 99%">
+    <div class="col-md-5">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-floating mb-4">
+                <input asp-for="Name" class="form-control" />
+                <label asp-for="Name">Nom</label>
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            @*<input type="submit" value="Save" class="btn btn-primary" />*@
+            @*<a asp-controller="Alley" asp-action="Index" class="btn btn-secondary">Cancel</a>*@
+            <input type="submit" value="Sauvegarder" class="btn btn-primary" />
+            <a asp-controller="Alley" asp-action="Index" class="btn btn-secondary">Annuler</a>
+        </form>
+    </div>
+</div>
