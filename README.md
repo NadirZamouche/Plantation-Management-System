@@ -15,7 +15,7 @@ FarmTechSolutions is a multifaceted project developed to address the challenges 
 
 ## Technologies Used ⚙️
 - Mobile Applications
-- SQL Server
+- SQL
 - XAML
 - UML
 - Xamarin Forms
